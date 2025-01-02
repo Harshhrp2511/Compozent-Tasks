@@ -13,8 +13,7 @@ def count_words(input_file, output_file):
     except Exception as e:
         print(f"An error occurred: {e}")
 
-# Example usage
-input_file = "input.txt"  # Path to your input file
-output_file = "output.txt"  # Path to your output file
+input_file = "input.txt"  
+output_file = "output.txt"  
 
 count_words(input_file, output_file)
