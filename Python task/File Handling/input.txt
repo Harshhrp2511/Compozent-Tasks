@@ -1,0 +1,3 @@
+This is an example text file.
+It contains multiple lines and words.
+You can use this file to test the word count script.
