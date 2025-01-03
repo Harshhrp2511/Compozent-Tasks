@@ -1,13 +1,15 @@
 from flask import Flask, jsonify, request
-from flask_cors import CORS
 
 app = Flask(__name__)
-CORS(app)  # Allow cross-origin requests
 
 tasks = [
     {"id": 1, "task": "Finish homework", "done": False},
     {"id": 2, "task": "Go for a walk", "done": False}
 ]
+
+@app.route('/')
+def index():
+    return app.send_static_file('index.html')
 
 @app.route('/tasks', methods=['GET'])
 def get_tasks():
@@ -37,4 +39,4 @@ def delete_task(task_id):
     return jsonify({"message": "Task deleted"}), 200
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(port=5500)

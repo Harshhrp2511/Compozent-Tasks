@@ -4,93 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>To-Do List</title>
-    <style>
-        body { font-family: Arial, sans-serif; margin: 20px; }
-        #tasks { margin-top: 20px; }
-        .task { padding: 10px; margin-bottom: 10px; border: 1px solid #ccc; }
-        .task button { margin-left: 10px; }
-        .done { text-decoration: line-through; }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <h1>To-Do List</h1>
 
-    <div>
-        <h2>Add New Task</h2>
-        <input type="text" id="task" placeholder="Enter task">
-        <button onclick="addTask()">Add Task</button>
-    </div>
+    <ul id="task-list"></ul>
 
-    <h2>Tasks</h2>
-    <div id="tasks"></div>
+    <input type="text" id="task-input" placeholder="Add new task">
+    <button onclick="addTask()">Add Task</button>
 
-    <script>
-        const apiUrl = 'http://127.0.0.1:5000/tasks';
-
-        // Fetch and display all tasks
-        function getTasks() {
-            fetch(apiUrl)
-                .then(response => response.json())
-                .then(data => {
-                    const tasksDiv = document.getElementById('tasks');
-                    tasksDiv.innerHTML = '';
-                    data.forEach(task => {
-                        const taskDiv = document.createElement('div');
-                        taskDiv.className = 'task';
-                        taskDiv.innerHTML = `
-                            <span class="${task.done ? 'done' : ''}">${task.task}</span>
-                            <button onclick="toggleTaskStatus(${task.id}, ${task.done})">
-                                ${task.done ? 'Mark as Incomplete' : 'Mark as Done'}
-                            </button>
-                            <button onclick="deleteTask(${task.id})">Delete</button>
-                        `;
-                        tasksDiv.appendChild(taskDiv);
-                    });
-                });
-        }
-
-        // Add a new task
-        function addTask() {
-            const task = document.getElementById('task').value;
-            if (!task) {
-                alert("Please enter a task.");
-                return;
-            }
-
-            const taskData = { task };
-            fetch(apiUrl, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(taskData)
-            })
-            .then(response => response.json())
-            .then(data => {
-                getTasks();  // Refresh task list
-                document.getElementById('task').value = '';
-            });
-        }
-
-        // Mark task as done or incomplete
-        function toggleTaskStatus(taskId, done) {
-            const updatedTask = { done: !done };
-            fetch(`${apiUrl}/${taskId}`, {
-                method: 'PUT',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(updatedTask)
-            })
-            .then(() => getTasks());  // Refresh task list
-        }
-
-        // Delete a task
-        function deleteTask(taskId) {
-            fetch(`${apiUrl}/${taskId}`, {
-                method: 'DELETE'
-            })
-            .then(() => getTasks());  // Refresh task list
-        }
-
-        // Initial load
-        getTasks();
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
