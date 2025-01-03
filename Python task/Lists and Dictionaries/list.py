@@ -33,8 +33,8 @@ class StudentDatabase:
 db = StudentDatabase()
 
 db.create(1, "Harsh", 22, [85, 90, 92])
-db.create(2, "Alex", 22, [88, 91, 89])
-db.create(3, "Rick", 23, [88, 91, 89])
+db.create(2, "Rohit", 22, [88, 91, 89])
+db.create(3, "Rishabh", 23, [88, 91, 89])
 
 db.read(1)
 db.read(3)
