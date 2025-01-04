@@ -11,7 +11,7 @@
             padding: 20px;
         }
         .container {
-            max-width: 400px;
+            max-width: 500px;
             margin: auto;
             padding: 20px;
             background: #fff;
@@ -25,7 +25,7 @@
             display: block;
             margin-bottom: 5px;
         }
-        input {
+        input, select {
             width: 100%;
             padding: 8px;
             margin: 0;
@@ -52,16 +52,31 @@
     <div class="container">
         <h2>House Price Prediction</h2>
         <div class="form-group">
-            <label for="feature1">Number of Rooms:</label>
-            <input type="number" id="feature1" placeholder="Enter number of rooms">
+            <label for="square_feet">Square Feet:</label>
+            <input type="number" id="square_feet" placeholder="Enter square footage" required min="0">
         </div>
         <div class="form-group">
-            <label for="feature2">Square Footage:</label>
-            <input type="number" id="feature2" placeholder="Enter square footage">
+            <label for="bedrooms">Number of Bedrooms:</label>
+            <input type="number" id="bedrooms" placeholder="Enter number of bedrooms" required min="1">
         </div>
         <div class="form-group">
-            <label for="feature3">Age of the House:</label>
-            <input type="number" id="feature3" placeholder="Enter age of the house">
+            <label for="bathrooms">Number of Bathrooms:</label>
+            <input type="number" id="bathrooms" placeholder="Enter number of bathrooms" required min="1">
+        </div>
+        <div class="form-group">
+            <label for="location">Location:</label>
+            <select id="location" required>
+                <option value="0">City</option>
+                <option value="1">Suburb</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="age_of_house">Age of House (in years):</label>
+            <input type="number" id="age_of_house" placeholder="Enter age of house" min="0" required>
+        </div>
+        <div class="form-group">
+            <label for="floor_number">Floor Number:</label>
+            <input type="number" id="floor_number" placeholder="Enter floor number" required min="1">
         </div>
         <button onclick="makePrediction()">Predict Price</button>
         <div class="result" id="result"></div>
@@ -69,20 +84,23 @@
 
     <script>
         async function makePrediction() {
-            const feature1 = document.getElementById('feature1').value;
-            const feature2 = document.getElementById('feature2').value;
-            const feature3 = document.getElementById('feature3').value;
+            const square_feet = document.getElementById('square_feet').value;
+            const bedrooms = document.getElementById('bedrooms').value;
+            const bathrooms = document.getElementById('bathrooms').value;
+            const location = document.getElementById('location').value;
+            const age_of_house = document.getElementById('age_of_house').value;
+            const floor_number = document.getElementById('floor_number').value;
 
             const response = await fetch('/predict', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ feature1, feature2, feature3 }),
+                body: JSON.stringify({ square_feet, bedrooms, bathrooms, location, age_of_house, floor_number }),
             });
 
             const result = await response.json();
-            document.getElementById('result').innerText = result.error || `Predicted House Price: $${result.prediction}`;
+            document.getElementById('result').innerText = result.error || `Predicted Price: ₹${result.prediction}`;
         }
     </script>
 </body>
