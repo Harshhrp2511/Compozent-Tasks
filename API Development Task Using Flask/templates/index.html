@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Advanced Task Management</title>
+    <title>Task Management</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
@@ -13,7 +13,7 @@
             <p>Organize your tasks efficiently.</p>
         </header>
 
-        <!-- Task Form Section -->
+        <!--Form-->
         <section id="task-form">
             <h2>Add New Task</h2>
             <input type="text" id="task-title" placeholder="Task Title">
@@ -24,15 +24,13 @@
             </div>
         </section>
 
-        <!-- Task List Section -->
+        <!--List-->
         <section id="task-list">
             <h2>Task List</h2>
             <p>Your tasks will appear here.</p>
             <div id="tasks-container"></div>
         </section>
     </div>
-
-    <!-- Scripts -->
     <script src="{{ url_for('static', filename='scripts.js') }}"></script>
 </body>
 </html>
