@@ -1,4 +1,3 @@
-// Fetch and display tasks
 async function fetchTasks() {
     const response = await fetch('/api/tasks');
     const tasks = await response.json();
@@ -25,7 +24,6 @@ async function fetchTasks() {
     });
 }
 
-// Add a new task
 async function addTask() {
     const title = document.getElementById('task-title').value;
     const description = document.getElementById('task-desc').value;
@@ -44,8 +42,6 @@ async function addTask() {
     fetchTasks();
     clearForm();
 }
-
-// Mark a task as complete or incomplete
 async function markComplete(taskId, completed) {
     await fetch(`/api/tasks/${taskId}`, {
         method: 'PUT',
@@ -55,8 +51,6 @@ async function markComplete(taskId, completed) {
 
     fetchTasks();
 }
-
-// Delete a task
 async function deleteTask(taskId) {
     await fetch(`/api/tasks/${taskId}`, {
         method: 'DELETE'
@@ -64,20 +58,14 @@ async function deleteTask(taskId) {
 
     fetchTasks();
 }
-
-// Copy task details to clipboard
 function copyToClipboard(title, description) {
     const text = `Task: ${title}\nDescription: ${description}`;
     navigator.clipboard.writeText(text).then(() => {
         alert('Task copied to clipboard!');
     });
 }
-
-// Clear input fields
 function clearForm() {
     document.getElementById('task-title').value = '';
     document.getElementById('task-desc').value = '';
 }
-
-// Initial fetch of tasks
 fetchTasks();
