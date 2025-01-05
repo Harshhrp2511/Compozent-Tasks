@@ -3,8 +3,8 @@ async function fetchTasks() {
     const response = await fetch('/api/tasks');
     const tasks = await response.json();
 
-    const taskList = document.getElementById('task-list');
-    taskList.innerHTML = '';
+    const taskContainer = document.getElementById('tasks-container');
+    taskContainer.innerHTML = '';
 
     tasks.forEach(task => {
         const taskItem = document.createElement('div');
@@ -13,9 +13,15 @@ async function fetchTasks() {
             <h3>${task.title}</h3>
             <p>${task.description}</p>
             <p>Status: ${task.completed ? 'Completed' : 'Incomplete'}</p>
-            <button onclick="deleteTask(${task.id})">Delete</button>
+            <div class="actions">
+                <button class="action-btn" onclick="markComplete(${task.id}, ${!task.completed})">
+                    ${task.completed ? 'Mark Incomplete' : 'Mark Complete'}
+                </button>
+                <button class="action-btn" onclick="copyToClipboard('${task.title}', '${task.description}')">Copy</button>
+                <button class="action-btn" onclick="deleteTask(${task.id})">Delete</button>
+            </div>
         `;
-        taskList.appendChild(taskItem);
+        taskContainer.appendChild(taskItem);
     });
 }
 
@@ -36,6 +42,18 @@ async function addTask() {
     });
 
     fetchTasks();
+    clearForm();
+}
+
+// Mark a task as complete or incomplete
+async function markComplete(taskId, completed) {
+    await fetch(`/api/tasks/${taskId}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ completed })
+    });
+
+    fetchTasks();
 }
 
 // Delete a task
@@ -45,6 +63,20 @@ async function deleteTask(taskId) {
     });
 
     fetchTasks();
+}
+
+// Copy task details to clipboard
+function copyToClipboard(title, description) {
+    const text = `Task: ${title}\nDescription: ${description}`;
+    navigator.clipboard.writeText(text).then(() => {
+        alert('Task copied to clipboard!');
+    });
+}
+
+// Clear input fields
+function clearForm() {
+    document.getElementById('task-title').value = '';
+    document.getElementById('task-desc').value = '';
 }
 
 // Initial fetch of tasks
