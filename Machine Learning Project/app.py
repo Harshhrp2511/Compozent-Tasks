@@ -26,10 +26,10 @@ def predict():
         # Prepare the features for prediction
         features = np.array([[square_feet, bedrooms, bathrooms, location, age_of_house, floor_number]])
 
-        # Make prediction (the output will be in INR)
+        # Make prediction
         prediction = model.predict(features)[0]
 
-        # Return the prediction in INR
+        # Return the prediction
         return jsonify({'prediction': round(prediction, 2)})
     except Exception as e:
         return jsonify({'error': str(e)}), 400

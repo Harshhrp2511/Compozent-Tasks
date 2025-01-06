@@ -6,125 +6,132 @@
     <title>House Price Prediction</title>
     <style>
        body {
-    font-family: 'Poppins', Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background: linear-gradient(to bottom right, #4facfe, #00f2fe);
-    color: #333;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
+            font-family: 'Poppins', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to bottom right, #4facfe, #00f2fe);
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
 
-.container {
-    max-width: 600px;
-    width: 90%;
-    background: #fff;
-    border-radius: 15px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    padding: 25px;
-    text-align: center;
-    color: #333;
-    animation: fadeIn 0.8s ease-in-out;
-}
+        .container {
+            max-width: 600px;
+            width: 90%;
+            background: #fff;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            padding: 25px;
+            text-align: center;
+            color: #333;
+            animation: fadeIn 0.8s ease-in-out;
+        }
 
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
-h2 {
-    font-size: 1.8rem;
-    color: #007bff;
-    margin-bottom: 20px;
-    font-weight: 600;
-}
+        h2 {
+            font-size: 1.8rem;
+            color: #007bff;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
 
-.form-group {
-    margin-bottom: 15px;
-    text-align: left;
-}
+        .form-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
 
-label {
-    font-size: 1rem;
-    color: #444;
-    font-weight: 500;
-    margin-bottom: 5px;
-    display: block;
-}
+        label {
+            font-size: 1rem;
+            color: #444;
+            font-weight: 500;
+            margin-bottom: 5px;
+            display: block;
+        }
 
-input, select {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    font-size: 1rem;
-    transition: 0.3s ease;
-    box-sizing: border-box;
-}
+        input, select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: 0.3s ease;
+            box-sizing: border-box;
+        }
 
-input:focus, select:focus {
-    outline: none;
-    border-color: #007bff;
-    box-shadow: 0 0 8px rgba(0, 123, 255, 0.2);
-}
+        input:focus, select:focus {
+            outline: none;
+            border-color: #007bff;
+            box-shadow: 0 0 8px rgba(0, 123, 255, 0.2);
+        }
 
-button {
-    width: 100%;
-    background: linear-gradient(to right, #6a11cb, #2575fc);
-    color: white;
-    border: none;
-    padding: 15px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 1rem;
-    font-weight: bold;
-    transition: all 0.3s ease;
-}
+        button {
+            width: 100%;
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
 
-button:hover {
-    background: linear-gradient(to right, #2575fc, #6a11cb);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-}
+        button:hover {
+            background: linear-gradient(to right, #2575fc, #6a11cb);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
 
-.result {
-    margin-top: 20px;
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: #28a745;
-    padding: 15px;
-    background: #f0f9f5;
-    border: 1px solid #d4edda;
-    border-radius: 8px;
-    display: none; /* Initially hidden */
-}
+        .result {
+            margin-top: 20px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #28a745;
+            padding: 15px;
+            background: #f0f9f5;
+            border: 1px solid #d4edda;
+            border-radius: 8px;
+            display: none; /* Initially hidden */
+        }
 
-.result.error {
-    color: #dc3545;
-    background: #f8d7da;
-    border: 1px solid #f5c6cb;
-    display: block; /* Shown on error */
-}
+        .result.error {
+            color: #dc3545;
+            background: #f8d7da;
+            border: 1px solid #f5c6cb;
+            display: block; /* Shown on error */
+        }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-    h2 {
-        font-size: 1.5rem;
-    }
+        .result.success {
+            color: #28a745;
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            display: block;
+        }
 
-    button {
-        font-size: 0.9rem;
-        padding: 12px;
-    }
-}
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            button {
+                font-size: 0.9rem;
+                padding: 12px;
+            }
+        }
 
     </style>
 </head>
@@ -171,16 +178,38 @@ button:hover {
             const age_of_house = document.getElementById('age_of_house').value;
             const floor_number = document.getElementById('floor_number').value;
 
-            const response = await fetch('/predict', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ square_feet, bedrooms, bathrooms, location, age_of_house, floor_number }),
-            });
+            try {
+                const response = await fetch('/predict', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        square_feet,
+                        bedrooms,
+                        bathrooms,
+                        location,
+                        age_of_house,
+                        floor_number
+                    }),
+                });
 
-            const result = await response.json();
-            document.getElementById('result').innerText = result.error || `Predicted Price: ₹${result.prediction}`;
+                const result = await response.json();
+
+                if (result.error) {
+                    document.getElementById('result').innerText = `Error: ${result.error}`;
+                    document.getElementById('result').classList.add('error');
+                    document.getElementById('result').classList.remove('success');
+                } else {
+                    document.getElementById('result').innerText = `Predicted Price: ₹${result.prediction}`;
+                    document.getElementById('result').classList.add('success');
+                    document.getElementById('result').classList.remove('error');
+                }
+            } catch (error) {
+                document.getElementById('result').innerText = `Error: ${error.message}`;
+                document.getElementById('result').classList.add('error');
+                document.getElementById('result').classList.remove('success');
+            }
         }
     </script>
 </body>
