@@ -15,26 +15,16 @@ data = {
     'price': [500000, 600000, 750000, 850000, 1000000, 1200000, 1500000, 520000, 650000, 770000, 890000, 1050000, 1250000, 1550000, 1700000, 450000, 580000, 720000, 860000, 1020000]
 }
 
-
 df = pd.DataFrame(data)
-
-
 X = df.drop(columns=['price'])
 y = df['price']
-
-
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-
-
 model = RandomForestRegressor()
 model.fit(X_train, y_train)
-
-
 y_pred = model.predict(X_test)
 mse = mean_squared_error(y_test, y_pred)
 r2 = r2_score(y_test, y_pred)
 
 print(f'Mean Squared Error: {mse}')
 print(f'R^2 Score: {r2}')
-
 joblib.dump(model, 'house_price_model.pkl')
