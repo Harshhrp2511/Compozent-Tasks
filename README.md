@@ -10,11 +10,11 @@
 
 ## 2. 🌐 API Development Task Using Flask  
 - RESTful API with CRUD Operations  
-- Frontend Integration with Flask  
+- Frontend Integration with Flask 
 
 ## 3. 🤖 Machine Learning Project  
 - Develop a Regression Model  
 - Create Flask API for Predictions  
-- Frontend for Predictions 
+- Frontend for Predictions using HTML, CSS and Javascript
 
 
