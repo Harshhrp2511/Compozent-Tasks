@@ -15,7 +15,6 @@
 ## 3. 🤖 Machine Learning Project  
 - Develop a Regression Model  
 - Create Flask API for Predictions  
-- Frontend for Predictions  
+- Frontend for Predictions 
 
----
-🎉 Happy Coding!
+
